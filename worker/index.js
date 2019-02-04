@@ -19,6 +19,7 @@ const sub = redisClient.duplicate();
 // numbers, but one that is useful for highlighting the need
 // for a separate worker process and using redis
 function fib(index) {
+	if (isNaN(index)) return "🥺stahp";
 	if (index < 2) return 1;
 	return fib(index - 1) + fib(index - 2);
 }
