@@ -10,19 +10,19 @@ script:
   - docker run malaika/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t malaika/multi-client ./client
-  - docker build -t malaika/multi-nginx ./nginx
-  - docker build -t malaika/multi-server ./server
-  - docker build -t malaika/multi-worker ./worker
+  - docker build -t malaika/multi-client:latest ./client
+  - docker build -t malaika/multi-nginx:latest ./nginx
+  - docker build -t malaika/multi-server:latest ./server
+  - docker build -t malaika/multi-worker:latest ./worker
 
   # Log into the Docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   # Push the created images up to Docker Hub
-  - docker push malaika/multi-client
-  - docker push malaika/multi-nginx
-  - docker push malaika/multi-server
-  - docker push malaika/multi-worker
+  - docker push malaika/multi-client:latest
+  - docker push malaika/multi-nginx:latest
+  - docker push malaika/multi-server:latest
+  - docker push malaika/multi-worker:latest
 
 deploy:
   provider: elasticbeanstalk
