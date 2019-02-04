@@ -23,3 +23,16 @@ after_success:
   - docker push malaika/multi-nginx
   - docker push malaika/multi-server
   - docker push malaika/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-west-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-west-1-321358705221
+  bucket_path: docker-multi
+  on:
+    master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
